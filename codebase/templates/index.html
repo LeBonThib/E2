@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- BOOTSTRAP CSS IMPORT -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <!-- FONT-AWESOME IMPORT -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+        <title>{% block title %}lé maladi dé zyeu{% endblock %}</title>
+    </head>
+    <body>
+        <!-- <div class="bg-image" style="background-image: url('website/static/wallhaven.jpg');height: 100vh"></div> -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type='button' data-toggle="collapse" data-target="#navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="/">Home</a>
+                    <a class="nav-item nav-link" href="/batch_predict">Batch Prediction</a>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1>HELLO</h1>
+            </div>
+            <div class="row justify-content-center">
+                <p> 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum aliquam, felis ac lacinia aliquet, lectus quam volutpat elit, eu volutpat mauris nibh id neque. Cras nisi nibh, fermentum eu rhoncus vel, aliquam sed risus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla facilisi. Fusce mollis massa sit amet nunc fermentum eleifend. In ac fermentum nisl. Nulla vel tellus suscipit, tincidunt diam in, dapibus nulla. Vivamus feugiat elit ac ex egestas rutrum eget quis nibh.
+                </p>
+                <p>
+                    In id nisi urna. Vestibulum eu mi et dui dictum consectetur. Etiam a ullamcorper odio. Curabitur volutpat ex sit amet neque euismod venenatis. Praesent commodo est a metus porttitor gravida. Donec pulvinar lacus sit amet dui sollicitudin tempus. Praesent ac ex felis. Morbi at odio vel erat porta congue nec eu eros. Phasellus finibus, nulla vitae gravida rhoncus, diam lacus feugiat velit, nec aliquet ante metus sit amet dolor. Donec nec aliquet est. Morbi eu quam turpis. Curabitur eleifend eros eget tortor luctus, ac accumsan libero posuere. 
+                </p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <h2>PLEASE UPLOAD YOUR FILE</h2>
+            </div>
+            <div class="row justify-content-center">
+                <form method="POST" action="/batch_predict" enctype="multipart/form-data">
+                    <input type="file" name="images" enctype="multipart/form-data" accept="image/*" multiple/>
+                    <input type="submit" value="Batch Prediction", name="files" id="files">
+                </form>
+            </div>
+        </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages%}
+                    {% if category == 'error' %}
+                    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-success alter-dismissable fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <section>
+            {% block content %}{% endblock %}
+        </section>
+        <!-- JQUERY IMPORT -->
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <!-- POPPER IMPORT -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <!-- BOOSTRAP JS IMPORT -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        {% block custom_script %}{% endblock %}
+    </body>
+</html>
